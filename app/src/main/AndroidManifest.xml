@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.ok.gmc">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
 
     <application
         android:allowBackup="true"
@@ -8,6 +12,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.hendiware.hellogcm" />
+            </intent-filter>
+        </receiver>
+
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -15,6 +31,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".Gms.GCMListener"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+
+
+        <service  android:enabled="true" android:name=".Gms.RegistrationService"
+          ></service>
     </application>
 
 </manifest>
