@@ -23,6 +23,7 @@ public class GCMListener extends GcmListenerService {
     public void onMessageReceived(String from, Bundle data) {
         super.onMessageReceived(from, data);
         String message = data.getString("message");
+        System.out.println(message+"ghfghfghf");
         sendNotification(message);
     }
 

@@ -29,7 +29,7 @@ public  class RegistrationService extends IntentService {
 
         InstanceID instanceID = InstanceID.getInstance(this);
         try {
-            String token = instanceID.getToken("580967115884", GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
+            String token = instanceID.getToken("944333320314", GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
             sendTokenToServer(token);
         } catch (IOException e) {
             e.printStackTrace();
@@ -38,7 +38,7 @@ public  class RegistrationService extends IntentService {
     }
     private void sendTokenToServer(final String token) {
 
-        Retrofit retrofit=new Retrofit.Builder().baseUrl("http://developerhendy.16mb.com/").build();
+        Retrofit retrofit=new Retrofit.Builder().baseUrl("http://emantest.16mb.com/").build();
         InterfaceService intentService=retrofit.create(InterfaceService.class);
         Call<ResponseBody> addToken=intentService.SaveToken(token);
         addToken.enqueue(new Callback<ResponseBody>() {
